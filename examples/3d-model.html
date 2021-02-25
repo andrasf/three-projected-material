@@ -49,7 +49,21 @@
         const geometry = extractGeometry(gltf.scene)
 
         // load the example texture
-        const texture = new THREE.TextureLoader().load('./images/uv.jpg')
+        var video = document.createElement('video');
+        video.src = "./video/91.mp4";
+        video.load(); // must call after setting/changing source
+        //video.crossOrigin = 'anonymous';
+        video.muted = true;
+        video.autoplay = true;
+        video.loop = true;
+        video.width = 200;
+        video.height = 200;
+        video.controls = true;
+        video.play();
+
+        const texture = new THREE.VideoTexture(video);
+
+        document.body.appendChild(video);
 
         // create the mesh with the projected material
         const material = new ProjectedMaterial({
